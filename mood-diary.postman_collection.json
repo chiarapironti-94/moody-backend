@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "e481f264-5173-4470-aafa-40dc1c6c74ee",
+		"name": "MoodDiary GraphQL API",
+		"description": "Collection per testare le query e le mutation del backend GraphQL di MoodDiary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "25060513"
+	},
+	"item": [
+		{
+			"name": "MoodEntry",
+			"item": [
+				{
+					"name": "Get Entries",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetMoodEntries($limit: Int) {\r\n  moodEntries(limit: $limit) {\r\n    _id\r\n    mood\r\n    rating\r\n    color\r\n    note\r\n    date\r\n  }\r\n}",
+								"variables": "{\r\n  \"limit\": 5\r\n}"
+							}
+						},
+						"url": "http://localhost:3001/graphql"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entry by ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetMoodEntry($id: ID!) {\r\n  moodEntry(id: $id) {\r\n    _id\r\n    mood\r\n    rating\r\n    color\r\n    note\r\n    date\r\n  }\r\n}\r\n",
+								"variables": "{\r\n  \"id\": \"687601c2649418e0cfe728d2\"\r\n}"
+							}
+						},
+						"url": "http://localhost:3001/graphql"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation CreateMoodEntry(\r\n  $mood: String!\r\n  $rating: Int!\r\n  $color: String!\r\n  $note: String\r\n) {\r\n  createMoodEntry(\r\n    mood: $mood\r\n    rating: $rating\r\n    color: $color\r\n    note: $note\r\n  ) {\r\n    _id\r\n    mood\r\n    rating\r\n    color\r\n    note\r\n    date\r\n  }\r\n}\r\n",
+								"variables": "{\r\n  \"mood\": \"sad\",\r\n  \"rating\": 4,\r\n  \"color\": \"#527065\",\r\n  \"note\": null\r\n}"
+							}
+						},
+						"url": "http://localhost:3001/graphql"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation DeleteMoodEntry($id: ID!) {\r\n  deleteMoodEntry(id: $id)\r\n}",
+								"variables": "{\r\n  \"id\": \"687601c2649418e0cfe728d2\"\r\n}"
+							}
+						},
+						"url": "http://localhost:3001/graphql"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Preferences",
+			"item": [
+				{
+					"name": "Get Preferences",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetPreferences {\r\n  preferences {\r\n    themeColor\r\n    lastPromptDate\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": "http://localhost:3001/graphql"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Preferences",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation UpdatePreferences($themeColor: String!, $lastPromptDate: String) {\r\n  updatePreferences(themeColor: $themeColor, lastPromptDate: $lastPromptDate) {\r\n    themeColor\r\n    lastPromptDate\r\n  }\r\n}\r\n",
+								"variables": "{\r\n  \"themeColor\": \"#ef4444\",\r\n  \"lastPromptDate\": \"2025-07-16T15:30:00.000Z\"\r\n}\r\n"
+							}
+						},
+						"url": "http://localhost:3001/graphql"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
