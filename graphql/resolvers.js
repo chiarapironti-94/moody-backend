@@ -1,7 +1,9 @@
+import { GraphQLDateTime } from 'graphql-scalars';
 import MoodEntry from './../database/models/moodEntry.js';
 import Preferences from './../database/models/preferences.js';
 
 export const resolvers = {
+  DateTime: GraphQLDateTime,
   Query: {
     moodEntries: async (_, args) => {
       const filter = {};

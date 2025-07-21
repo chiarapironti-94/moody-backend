@@ -1,16 +1,19 @@
 export const typeDefs = `
+
+  scalar DateTime
+
   type MoodEntry {
     _id: ID!
     mood: String!
     rating: Int!
     color: String!
     note: String
-    date: String!
+    date: DateTime!
   }
 
   type Preferences {
     themeColor: String!
-    lastPromptDate: String
+    lastPromptDate: DateTime!
   }
 
   type Query {
